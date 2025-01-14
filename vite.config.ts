@@ -5,6 +5,10 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
 
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 // https://vite.dev/config/
 // export default defineConfig({
 //   plugins: [
@@ -23,7 +27,16 @@ export default defineConfig(({ command, mode }) => {
     console.log('当前的mode是', mode) // development
     return {
       // dev 独有配置
-      plugins: [vue(), vueDevTools()],
+      plugins: [
+        vue(),
+        vueDevTools(),
+        AutoImport({
+          resolvers: [ElementPlusResolver()]
+        }),
+        Components({
+          resolvers: [ElementPlusResolver()]
+        })
+      ],
       resolve: {
         alias: {
           '@': path.resolve(__dirname, 'src')
@@ -41,7 +54,16 @@ export default defineConfig(({ command, mode }) => {
     // command === 'build'
     return {
       // build 独有配置
-      plugins: [vue(), vueDevTools()],
+      plugins: [
+        vue(),
+        vueDevTools(),
+        AutoImport({
+          resolvers: [ElementPlusResolver()]
+        }),
+        Components({
+          resolvers: [ElementPlusResolver()]
+        })
+      ],
       resolve: {
         alias: {
           '@': path.resolve(__dirname, 'src')
