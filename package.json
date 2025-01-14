@@ -12,7 +12,7 @@
     "lint": "eslint . --fix",
     "prettier": "prettier --write src/",
     "prepare": "husky",
-    "commitizen": "cz"
+    "commit": "cz"
   },
   "dependencies": {
     "vue": "^3.5.13"

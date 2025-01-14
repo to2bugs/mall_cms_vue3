@@ -1,11 +1,11 @@
 <template>
   <div>
-    <test />
+    <h2>TEST TEST TEST</h2>
   </div>
 </template>
 
 <script setup lang="ts">
-import Test from '@/components/test.vue'
+console.log('全局的常量：', __APP_VERSION__)
 </script>
 
 <style scoped></style>
