@@ -10,7 +10,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/theme-chalk/el-loading.css'
 import 'element-plus/theme-chalk/el-message.css'
 
-// 测试OTRequest对象
+// test
 import otRequest from '@/services'
 
 const app = createApp(App)
@@ -24,12 +24,33 @@ app.use(router)
 app.use(pinia)
 app.mount('#app')
 
-// 测试封装的axios
+// test
 otRequest
   .request({
     url: '/home/multidata',
-    method: 'GET'
+    method: 'GET',
+    interceptors: {
+      requestInterceptor: (request) => {
+        console.log('【路径拦截器】【请求】 成功')
+        return request
+      },
+      requestInterceptrError: (error) => {
+        console.log('【路径拦截器】【请求】 失败')
+        console.error(error)
+      },
+      responseInterceptor: (response) => {
+        console.log('【路径拦截器】【响应】 成功')
+        return response
+      },
+      responseInterceptorError: (error) => {
+        console.log('【路径拦截器】【响应】 失败')
+        console.error(error)
+      }
+    }
   })
-  .then((response) => {
-    console.log('main.ts', response)
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => {
+    console.log(err)
   })
