@@ -12,6 +12,8 @@ import 'element-plus/theme-chalk/el-message.css'
 
 // test
 import otRequest from '@/services'
+import type { IDataType } from '@/types/request'
+import type { AxiosResponse } from 'axios'
 
 const app = createApp(App)
 
@@ -26,9 +28,10 @@ app.mount('#app')
 
 // test
 otRequest
-  .request({
+  .request<IDataType>({
     url: '/home/multidata',
     method: 'GET',
+    showLoading: true,
     interceptors: {
       requestInterceptor: (request) => {
         console.log('【路径拦截器】【请求】 成功')

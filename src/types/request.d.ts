@@ -13,10 +13,16 @@ export interface IOTRequestInterceptor<REUEST_CONFIG, RESPONSE> {
   responseInterceptorError?: (error: any) => any
 }
 
-export interface IOTRequestRequestConfig<
+export interface IOTRequestConfig<
   T = InternalAxiosRequestConfig,
   D = AxiosResponse
 > extends CreateAxiosDefaults {
   showLoading?: boolean
   interceptors?: IOTRequestInterceptor<T, D>
+}
+
+export interface IDataType {
+  data: any
+  returnCode: string
+  success: boolean
 }
