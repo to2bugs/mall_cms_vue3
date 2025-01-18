@@ -1,39 +1,22 @@
-# mall_cms_vue3
+## 获取组件的类型
+```ts
+import LoginPhone from '@/views/login/cpns/login-phone.vue'
 
-This template should help get you started developing with Vue 3 in Vite.
+// 通过ref获取到login-account.vue组件的实例
+// 注意获取组件实例的类型InstanceType<typeof LoginAccount>
+const accountComponentRef = ref<InstanceType<typeof LoginAccount>>()
 
-## Recommended IDE Setup
+// 调用组件login-account.vue中暴露给外部使用的方法loginAction()
+accountComponentRef.value?.loginAction()
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+// 绑定组件el-form
+const formRef = ref<InstanceType<typeof ElForm>>()
+// 调用el-form组件的验证方法validate(callback)
+formRef.value?.validate((isValid: boolean) => {
+  if (isValid) {
+    // 验证通过
+    console.log('执行登陆逻辑')
+  }
+})
 ```
